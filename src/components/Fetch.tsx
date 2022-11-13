@@ -18,7 +18,7 @@ export const Fetch: FC<Props> = ({
 
   if (error) return renderError(error);
   if (loading) return loadingFallback;
-  if (!data) return null;
+  if (!data || data.length === 0 || data.message === "Not Found") return null;
 
   return renderSuccess({ data });
 };

@@ -38,8 +38,6 @@ export const useIterator = (
 ) => {
   const [i, setIndex] = useState(initialIndex);
 
-  console.log(i);
-
   const prev = useCallback(() => {
     if (i === 0) return setIndex(items.length - 1);
     setIndex(i - 1);
