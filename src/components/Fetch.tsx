@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { GitHubData, useFetch } from "./hooks";
+import { useFetch } from "./hooks";
 
 type Props = {
   uri: string;
-  renderSuccess: ({ data }: { data: GitHubData }) => void;
+  renderSuccess: ({ data }: { data: any }) => void;
   loadingFallback?: any;
   renderError?: (error: string) => JSX.Element;
 };
@@ -18,5 +18,7 @@ export const Fetch: FC<Props> = ({
 
   if (error) return renderError(error);
   if (loading) return loadingFallback;
-  if (data) return renderSuccess({ data });
+  if (!data) return null;
+
+  return renderSuccess({ data });
 };
