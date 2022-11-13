@@ -1,14 +1,7 @@
 import React from "react";
-import "./App.css";
-import { Menu } from "./components";
-import recipes from "./data/recipes.json";
 
 function App() {
-  return (
-    <div className="App">
-      <Menu recipes={recipes} />
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
