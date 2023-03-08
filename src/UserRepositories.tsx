@@ -25,5 +25,5 @@ export const UserRepositories: FC<Props> = ({ login, onSelect }) => {
     return null;
   }
 
-  return <RepoMenu repositories={data} onSelect={onSelect} />;
+  return <RepoMenu repositories={data} login={login} onSelect={onSelect} />;
 };
