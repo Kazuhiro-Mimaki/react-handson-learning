@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 
-type GitHubAPIResponse = {
-  name: string;
-  login: string;
-  avatar_url: string;
-  location: string;
-};
-
-export const useFetch = (uri: string) => {
-  const [data, setData] = useState<GitHubAPIResponse>();
+export const useFetch = <T>(uri: string) => {
+  const [data, setData] = useState<T>();
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
 

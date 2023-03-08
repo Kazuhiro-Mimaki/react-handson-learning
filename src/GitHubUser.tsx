@@ -1,12 +1,14 @@
 import { FC } from "react";
+import { GitHubUser as GitHubUserType } from "./models/githubUsers";
 import { useFetch } from "./useFetch";
+import { UserRepositories } from "./UserRepositories";
 
 type Props = {
   login: string;
 };
 
 export const GitHubUser: FC<Props> = ({ login }) => {
-  const { loading, data, error } = useFetch(
+  const { loading, data, error } = useFetch<GitHubUserType>(
     `https://api.github.com/users/${login}`
   );
 
@@ -30,6 +32,10 @@ export const GitHubUser: FC<Props> = ({ login }) => {
         {data.name && <p>{data.name}</p>}
         {data.location && <p>{data.location}</p>}
       </div>
+      <UserRepositories
+        login={data.login}
+        onSelect={(repoName) => console.log(`${repoName} selected`)}
+      />
     </div>
   );
 };
