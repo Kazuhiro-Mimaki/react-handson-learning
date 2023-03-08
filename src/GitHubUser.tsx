@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react";
+import { useFetch } from "./useFetch";
 
 type Props = {
   login: string;
@@ -12,29 +13,22 @@ type GitHubAPIResponse = {
 };
 
 export const GitHubUser: FC<Props> = ({ login }) => {
-  const [data, setData] = useState<GitHubAPIResponse>();
-  const [error, setError] = useState();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!login) return;
-    setLoading(true);
-    fetch(`https://api.github.com/users/${login}`)
-      .then((res) => res.json())
-      .then(setData)
-      .then(() => setLoading(false))
-      .catch(setError);
-  }, [login]);
+  const { loading, data, error } = useFetch(
+    `https://api.github.com/users/${login}`
+  );
 
   if (error) {
     return <pre>{JSON.stringify(error, null, 2)}</pre>;
   }
+
   if (loading) {
     return <h1>loading...</h1>;
   }
+
   if (!data) {
     return null;
   }
+
   return (
     <div className="githubUser">
       <img src={data.avatar_url} alt={data.login} style={{ width: 200 }} />
