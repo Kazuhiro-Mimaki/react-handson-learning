@@ -1,15 +1,8 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { useFetch } from "./useFetch";
 
 type Props = {
   login: string;
-};
-
-type GitHubAPIResponse = {
-  name: string;
-  login: string;
-  avatar_url: string;
-  location: string;
 };
 
 export const GitHubUser: FC<Props> = ({ login }) => {
@@ -39,5 +32,4 @@ export const GitHubUser: FC<Props> = ({ login }) => {
       </div>
     </div>
   );
-  return <pre>{JSON.stringify(data, null, 2)}</pre>;
 };
